@@ -10,7 +10,7 @@ const params = { useNewUrlParser: true, useUnifiedTopology: true };
 //connect mongoDB
 mongoose
   .connect(uri, params)
-  .then(console.log("MongoDB is connectet to: " + uri))
+  .then(console.log("MongoDB is connected"))
   .catch((err) => console.error("Problem to connect mongoDB: " + err));
 
 const app = express();
