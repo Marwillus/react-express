@@ -5,22 +5,25 @@ import InputItem from "./InputItem";
 import ListItem from "./ListItem";
 
 const Shoppinglist = () => {
-  const [newItem, setNewItem] = useState();
-  const [priority, setPriority] = useState(2);
   const [itemList, setItemList] = useState([]);
+  const [itemObj, setItemObj] = useState();
 
   useEffect(() => {
-    console.log("render");
-
-    axios
-      .get("http://localhost:3030/items")
-      .then((res) => setItemList(res.data));
+    console.log("render first time");
+    axios.get("/items").then((res) => setItemList(res.data));
   }, []);
+
+  useEffect(() => {
+    console.log("update");
+    if (itemObj) {
+      axios.post("/items", itemObj).then((res) => console.log(res));
+    }
+  }, [setItemObj]);
 
   return (
     <div className="container">
       <h3>Einkaufsliste</h3>
-      <InputItem />
+      <InputItem setItemObj={setItemObj} />
       <ul className="item-list">
         {itemList.map((item, index) => {
           return (

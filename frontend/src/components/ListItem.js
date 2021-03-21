@@ -16,16 +16,12 @@ const ListItem = ({ item, index }) => {
   };
   const handleBlur = (e) => {
     const toUpdate = { _id: e.target.id, name: e.target.value };
-    axios
-      .put("http://localhost:3030/items", toUpdate)
-      .then((res) => console.log(res));
+    axios.put("/items", toUpdate).then((res) => console.log(res));
   };
   const deleteItem = (e) => {
     const deleteId = { id: e.target.previousSibling.id };
     console.log(deleteId);
-    axios
-      .delete(`http://localhost:3030/items`, { data: deleteId })
-      .then((res) => console.log(res));
+    axios.delete(`/items`, { data: deleteId }).then((res) => console.log(res));
   };
 
   return (

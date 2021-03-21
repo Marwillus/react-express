@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const InputItem = () => {
+const InputItem = ({ setItemObj }) => {
   const [itemName, setItemName] = useState("");
   const [itemPrio, setItemPrio] = useState(3);
   const [itemQuantity, setQuantity] = useState(1);
@@ -23,9 +23,8 @@ const InputItem = () => {
       priority: itemPrio,
       quantity: itemQuantity,
     };
-    axios
-      .post("http://localhost:3030/items", itemObj)
-      .then((res) => console.log(res));
+    axios.post("/items", itemObj).then((res) => console.log(res));
+    // setItemObj(itemObj);
   };
 
   return (
