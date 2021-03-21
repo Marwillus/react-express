@@ -21,7 +21,7 @@ const Shoppinglist = () => {
     <div className="container">
       <h3>Einkaufsliste</h3>
       <InputItem />
-      <ul>
+      <ul className="item-list">
         {itemList.map((item, index) => {
           return (
             <li key={index}>

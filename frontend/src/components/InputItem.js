@@ -1,33 +1,72 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 const InputItem = () => {
+  const [itemName, setItemName] = useState("");
+  const [itemPrio, setItemPrio] = useState(3);
+  const [itemQuantity, setQuantity] = useState(1);
+
+  const onChange = (e) => {
+    if (e.target.name === "name") {
+      setItemName(e.target.value);
+    } else if (e.target.name === "priority") {
+      setItemPrio(e.target.value);
+    } else if (e.target.name === "quantity") {
+      setQuantity(e.target.value);
+    }
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const itemObj = {
+      name: itemName,
+      priority: itemPrio,
+      quantity: itemQuantity,
+    };
+    axios
+      .post("http://localhost:3030/items", itemObj)
+      .then((res) => console.log(res));
+  };
+
   return (
-    <form action="http://localhost:3030/items" method="POST">
-      <input
-        type="text"
-        placeholder="enter item"
-        name="name"
-        id="itemInput"
-        required={true}
-      />
-      <select name="quantity" id="quantity">
-        {[...Array(10)].map((_, i) => {
-          return (
-            <option key={i} value={i + 1}>
-              {i + 1}
-            </option>
-          );
-        })}
-      </select>
-      <button type="submit">+</button>
+    <form className="item-form">
+      <div>
+        <input
+          type="text"
+          placeholder="enter item"
+          name="name"
+          id="itemInput"
+          value={itemName}
+          onChange={(e) => onChange(e)}
+          required={true}
+        />
+        <select
+          name="quantity"
+          id="quantity"
+          value={itemQuantity}
+          onChange={(e) => onChange(e)}
+        >
+          {[...Array(20)].map((_, i) => {
+            return (
+              <option key={i} value={i + 1}>
+                {i + 1}
+              </option>
+            );
+          })}
+        </select>
+        <button onClick={(e) => onSubmit(e)}>+</button>
+      </div>
+      <span>unwichtig</span>
       <input
         type="range"
         name="priority"
         id="priority"
         min="1"
         max="5"
-        style={{ display: "block" }}
+        value={itemPrio}
+        onChange={(e) => onChange(e)}
       />
+      <span>wichtig</span>
     </form>
   );
 };

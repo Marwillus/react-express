@@ -59,8 +59,8 @@ app.put("/items", async (req, res, next) => {
 
 app.delete("/items", async (req, res, next) => {
   try {
-    console.log(req.params);
-    const deletedItem = await Item.deleteOne({ _id: req.body._id });
+    console.log(req.body);
+    const deletedItem = await Item.deleteOne({ _id: req.body.id });
     res.status(201).json({
       message: "item succesfully deleted",
       createdProduct: deletedItem,
