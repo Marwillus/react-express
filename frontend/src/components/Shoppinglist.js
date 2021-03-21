@@ -15,6 +15,8 @@ const Shoppinglist = () => {
     axios.get("/items").then((res) => setItemList(res.data));
   }, []);
 
+  useEffect(() => {}, [itemList]);
+
   const onSubmit = (e) => {
     e.preventDefault();
     const itemProps = {
@@ -40,7 +42,7 @@ const Shoppinglist = () => {
     sortedList.sort((a, b) => {
       return b.priority - a.priority;
     });
-    console.log(sortedList);
+    // console.log(sortedList);
     setItemList(sortedList);
   };
 

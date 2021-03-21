@@ -1,9 +1,14 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const ListItem = ({ item, deleteItem }) => {
-  const [inputValue, setInputValue] = useState(item.name);
-  const [quantityValue, setQuantityValue] = useState(item.quantity);
+  const [inputValue, setInputValue] = useState();
+  const [quantityValue, setQuantityValue] = useState();
+
+  useEffect(() => {
+    setInputValue(item.name);
+    setQuantityValue(item.quantity);
+  }, [item.name]);
 
   const handleChange = (e) => {
     if (e.target.name === "itemName") {
@@ -11,7 +16,6 @@ const ListItem = ({ item, deleteItem }) => {
     } else if (e.target.name === "itemQuantity") {
       setQuantityValue(e.target.value);
     }
-
     e.target.value = inputValue;
   };
 
