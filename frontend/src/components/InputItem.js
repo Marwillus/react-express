@@ -21,7 +21,11 @@ const InputItem = ({
 
   return (
     <form className="item-form">
-      <div>
+      <div className="pseudo-label">
+        <span>Artikel</span>
+        <span>Menge</span>
+      </div>
+      <div className="input-wrapper">
         <input
           type="text"
           placeholder="enter item"
@@ -47,17 +51,19 @@ const InputItem = ({
         </select>
         <button onClick={(e) => onSubmit(e)}>+</button>
       </div>
-      <span>unwichtig</span>
-      <input
-        type="range"
-        name="priority"
-        id="priority"
-        min="1"
-        max="5"
-        value={itemPrio}
-        onChange={(e) => onChange(e)}
-      />
-      <span>wichtig</span>
+      <div className="slider">
+        <span>unwichtig</span>
+        <input
+          type="range"
+          name="priority"
+          id="priority"
+          min="1"
+          max="5"
+          value={itemPrio}
+          onChange={(e) => onChange(e)}
+        />
+        <span>wichtig</span>
+      </div>
     </form>
   );
 };

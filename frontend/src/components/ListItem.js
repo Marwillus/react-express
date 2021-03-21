@@ -8,7 +8,7 @@ const ListItem = ({ item, deleteItem }) => {
   useEffect(() => {
     setInputValue(item.name);
     setQuantityValue(item.quantity);
-  }, [item.name]);
+  }, [item.name, item.quantity]);
 
   const handleChange = (e) => {
     if (e.target.name === "itemName") {

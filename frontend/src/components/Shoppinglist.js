@@ -59,7 +59,9 @@ const Shoppinglist = () => {
         setQuantity={setQuantity}
       />
       <div className="item-list">
-        <button onClick={handleSort}>sortiere nach dringlichkeit</button>
+        <button className="sort-btn" onClick={handleSort}>
+          sortiere nach dringlichkeit
+        </button>
         <ul>
           {itemList.map((item, index) => {
             return (
