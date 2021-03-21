@@ -33,9 +33,11 @@ app.get("/items", async (req, res, next) => {
 app.post("/items", async (req, res, next) => {
   try {
     const newItem = await Item.create(req.body);
+    const allItems = await Item.find();
     res.status(201).json({
       message: "item succesfully created",
       createdProduct: newItem,
+      newList: allItems,
     });
   } catch (error) {
     res.status(500).send("couldnt create item: " + error);
@@ -59,11 +61,11 @@ app.put("/items", async (req, res, next) => {
 
 app.delete("/items", async (req, res, next) => {
   try {
-    console.log(req.body);
     const deletedItem = await Item.deleteOne({ _id: req.body.id });
+    const allItems = await Item.find();
     res.status(201).json({
       message: "item succesfully deleted",
-      createdProduct: deletedItem,
+      newList: allItems,
     });
   } catch (error) {
     res.status(500).send("couldnt delete item: " + error);

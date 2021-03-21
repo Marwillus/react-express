@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 
-const ListItem = ({ item, index }) => {
+const ListItem = ({ item, deleteItem }) => {
   const [inputValue, setInputValue] = useState(item.name);
   const [quantityValue, setQuantityValue] = useState(item.quantity);
 
@@ -14,24 +14,31 @@ const ListItem = ({ item, index }) => {
 
     e.target.value = inputValue;
   };
+
   const handleBlur = (e) => {
     const toUpdate = { _id: e.target.id, name: e.target.value };
-    axios.put("/items", toUpdate).then((res) => console.log(res));
+    axios
+      .put("/items", toUpdate)
+      .then((res) => console.log("successfully updated"));
   };
-  const deleteItem = (e) => {
-    const deleteId = { id: e.target.previousSibling.id };
-    console.log(deleteId);
-    axios.delete(`/items`, { data: deleteId }).then((res) => console.log(res));
+
+  const priorityColor = {
+    1: "#6CF589",
+    2: "#DCF570",
+    3: "#F5D26D",
+    4: "#F5A66A",
+    5: "#F56560",
   };
 
   return (
-    <div>
+    <div className="list-item">
       <input
         type="number"
         name="itemQuantity"
-        id="itemQuantity"
+        id="item-quantity"
         value={quantityValue}
         onChange={(e) => handleChange(e)}
+        style={{ borderLeft: `${priorityColor[item.priority]} 5px solid` }}
       />
       <input
         type="text"

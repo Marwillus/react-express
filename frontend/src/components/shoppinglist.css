@@ -1,5 +1,5 @@
 .container {
-  width: 300px;
+  width: 310px;
   margin: auto;
   margin-top: 3rem;
   box-shadow: 5px 5px 20px gray;
@@ -15,6 +15,7 @@
 .item-form > span {
   font-size: 0.7rem;
 }
+
 #itemInput {
   border: none;
   line-height: 2rem;
@@ -23,7 +24,14 @@
   border: gray 1px solid;
   border-radius: 1rem;
   padding: 0.5rem;
+  margin-top: 2rem;
 }
-#itemQuantity {
+.list-item input,
+.list-item button {
+  line-height: 1.6rem;
+}
+#item-quantity {
   width: 2rem;
+  border: none;
+  border-radius: 0.6rem;
 }
